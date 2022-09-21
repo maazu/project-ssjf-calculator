@@ -9,7 +9,6 @@ def add(request):
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
-
         return Response('working')
 
     elif request.method == 'POST':
