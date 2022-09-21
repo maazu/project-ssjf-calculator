@@ -25,7 +25,16 @@ SECRET_KEY = 'django-insecure-nn^2kdf_19xc#xz!#*qi*sc9$sccte5cji_ri+405exgf+5=24
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8001",
+    "http://localhost:3000",
+    "http://127.0.0.1:8080",
+    "http://127.0.0.1:8001",
+    "http://127.0.0.1:3000",
+
+]
 
 
 # Application definition
@@ -37,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'calculator'
 ]
 
 MIDDLEWARE = [
