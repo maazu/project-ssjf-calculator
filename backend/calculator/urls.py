@@ -1,8 +1,11 @@
-from django.urls import path
 
-from .views.calculator import add
+from django.urls import path
+from .import views
+
+
+from calculator import views
 
 urlpatterns = [
-    path('add/',  add.as_view(), name='add'),
-    path('subtract/',  add.as_view(), name='subtract'),
+    path('add/',  views.add, name='add'),
+    path('subtract/',  views.subtract, name='subtract'),
 ]
