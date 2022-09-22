@@ -1,12 +1,15 @@
+from unittest import result
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from decimal import Decimal
+from decimal import getcontext
+import numpy as np
+from scipy.special import factorial
 
-import BigNumber
 
-
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST']
+          )
 def square_root_cap(request):
 
     if request.method == 'GET':
@@ -48,9 +51,11 @@ def square_root(request):
         data = request.data
         testnumber = data['testNumber']
         number = data['number2']
+        n = Decimal(number)
+        getcontext().prec = 10000
+        result = n.sqrt()
 
-        result = BigNumber.sqrt(testnumber)
-        return Response(str(result[0]))
+        return Response(str(result))
     else:
         return Response("working add")
 
@@ -105,9 +110,14 @@ def multiply(request):
 
 @api_view(['GET', 'POST'])
 def factorial(request):
+    if request.method == 'POST':
+        data = request.data
+        testnumber = data['testNumber']
+        number = data['number2']
+        arr = np.array([number])
+        result = factorial(arr, exact=False)
 
-    if request.method == 'GET':
-        return Response("working subtract")
+        return Response(str(result[0]))
 
-    elif request.method == 'POST':
-        return Response("working subtract post")
+    else:
+        return Response("please send the post request payload")
