@@ -11,8 +11,8 @@ from .features.step_four import compute_step_four
 
 @api_view(['GET', 'POST'])
 def calulator_funtions(request):
-
     if request.method == 'POST':
+
         request_payload = request.data
 
         compute_function = request_payload['calFunction']
