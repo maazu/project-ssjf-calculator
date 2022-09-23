@@ -167,3 +167,5 @@ cython_debug/
 
 # ssh access keys
 *.pem
+
+*.txt
