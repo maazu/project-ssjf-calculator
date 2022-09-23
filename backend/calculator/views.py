@@ -1,3 +1,4 @@
+import re
 from unittest import result
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -5,7 +6,11 @@ from rest_framework.response import Response
 from decimal import Decimal
 from decimal import getcontext
 import numpy as np
-from scipy.special import factorial
+from .forms import UploadFileForm
+import os
+from django.conf import settings
+from datetime import datetime
+import filetype
 
 
 @api_view(['GET', 'POST']
@@ -20,12 +25,23 @@ def square_root_cap(request):
 
 
 @api_view(['GET', 'POST'])
-def module_limits_upload(request):
+def step_two(request):
+    '''
+    Check Mod limit
+    '''
+    TIMESTAMP = datetime.now().strftime("%Y-%m-%d-%I-%M-%S-%p")
+    if request.method == 'POST':
+        mod_limit_file = request.FILES['file']
 
-    if request.method == 'GET':
-        return Response("working subtract")
+        path = os.path.join(settings.MEDIA_ROOT,
+                            str(TIMESTAMP) + '-' + mod_limit_file.name)
 
-    elif request.method == 'POST':
+        with open(path, 'w') as infile:
+            str_repr = mod_limit_file.read().decode()
+            infile.write(str_repr)
+
+        
+
         return Response("working subtract post")
 
 
@@ -108,16 +124,29 @@ def multiply(request):
         return Response("please send the post request payload")
 
 
+def factorial(n):
+    x = n
+    for i in range(1, n):
+        x = x*(n-i)
+    return x
+
+
 @api_view(['GET', 'POST'])
 def factorial(request):
     if request.method == 'POST':
-        data = request.data
-        testnumber = data['testNumber']
-        number = data['number2']
-        arr = np.array([number])
-        result = factorial(arr, exact=False)
+        try:
+            data = request.data
+            testnumber = data['testNumber']
+            number = data['number2']
 
-        return Response(str(result[0]))
+            res = sum(int(digit)
+                      for digit in str(factorial(number)))
+
+            return Response(str(res))
+
+        except Exception as e:
+            print(e)
+            return Response('Factorial Error :' + str(e))
 
     else:
         return Response("please send the post request payload")

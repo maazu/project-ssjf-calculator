@@ -12,6 +12,7 @@ urlpatterns = [
     path('multiply/',  views.multiply, name='multiply'),
     path('divide/',  views.divide, name='divide'),
     path('factorial/',  views.factorial, name='factorial'),
+    path('step2/',  views.step_two, name='step2'),
     path('step4/',  views.step_four, name='step4'),
     path('squarerootcap/',  views.square_root_cap, name='squarerootcap'),
 ]
