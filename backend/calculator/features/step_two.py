@@ -9,3 +9,4 @@ def compute_step_two(payload):
     file = handle_fileupload(payload)
     print(file)
     return ''
+    

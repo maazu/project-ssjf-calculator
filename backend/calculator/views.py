@@ -11,8 +11,8 @@ from .features.step_four import compute_step_four
 
 @api_view(['GET', 'POST'])
 def calulator_funtions(request):
-    if request.method == 'POST':
 
+    if request.method == 'POST':
         request_payload = request.data
 
         compute_function = request_payload['calFunction']
@@ -29,20 +29,20 @@ def calulator_funtions(request):
         elif compute_function == 'divide':
             result = compute_division(request_payload)
 
-        elif compute_function == 'exponent':
-            result = compute_exponent(request_payload)
-
-        elif compute_function == 'factorial':
-            result = compute_factorial(request_payload)
-
         elif compute_function == 'squarerootcap':
             result = compute_squareroot_cap(request_payload)
 
         elif compute_function == 'squareroot':
             result = compute_squareroot(request_payload)
 
+        elif compute_function == 'exponent':
+            result = compute_exponent(request_payload)
+
+        elif compute_function == 'factorial':
+            result = compute_factorial(request_payload)
+
         elif compute_function == 'step2' or compute_function == 'modlimits':
-            result = compute_step_two(request_payload)
+            result = compute_step_two(request)
 
         elif compute_function == 'step4':
             result = compute_step_four(request_payload)
