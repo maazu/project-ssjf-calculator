@@ -38,9 +38,9 @@ def compute_division(payload):
 
 def compute_squareroot(payload):
     number_one, number_two = unpack_payload(payload)
-    n = Decimal(number_two)
+    number = Decimal(number_two)
     getcontext().prec = 10000
-    result = n.sqrt()
+    result = number.sqrt()
     return result
 
 
