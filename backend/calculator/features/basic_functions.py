@@ -37,19 +37,19 @@ def compute_addition(payload):
 
 def compute_subtraction(payload):
     number_one, number_two = unpack_payload(payload)
-    result = number_one - number_two
+    result = Decimal(number_one) - Decimal(number_two)
     return result
 
 
 def compute_mutliplication(payload):
     number_one, number_two = unpack_payload(payload)
-    result = number_one * number_two
+    result = Decimal(number_one) * Decimal(number_two)
     return result
 
 
 def compute_division(payload):
     number_one, number_two = unpack_payload(payload)
-    result = number_one // number_two
+    result = Decimal(number_one) // Decimal(number_two)
     return result
 
 
@@ -57,13 +57,13 @@ def compute_squareroot(payload):
     number_one, number_two = unpack_payload(payload)
     number = Decimal(number_two)
     getcontext().prec = 100000000
-    result = number.sqrt()
+    result = Decimal(number_one).sqrt()
     return result
 
 
 def compute_squareroot_cap(payload):
     number_one, number_two = unpack_payload(payload)
-    result = (number_one + 1) // 2
+    result = (Decimal(number_one) + 1) // 2
     return result
 
 
