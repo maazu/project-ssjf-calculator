@@ -25,9 +25,15 @@ SECRET_KEY = 'django-insecure-nn^2kdf_19xc#xz!#*qi*sc9$sccte5cji_ri+405exgf+5=24
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-CORS_ORIGIN_ALLOW_ALL = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1",  "0.0.0.0", '3.236.248.167']
+CORS_ALLOW_CREDENTIALS = True
+
+ALLOWED_HOSTS = [
+    "localhost",
+    "0.0.0.0",
+    "127.0.0.1",
+    "3.236.248.167",
+]
 
 
 CORS_ALLOWED_ORIGINS = [
@@ -39,6 +45,24 @@ CORS_ALLOWED_ORIGINS = [
     "http://3.236.248.167",
 ]
 
+CORS_ORIGIN_WHITELIST = (
+    "http://localhost:8001",
+    "http://localhost:3000",
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:8001',
+    'https://project-ssjf.netlify.app/'
+)
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8001",
+    "http://localhost:3000",
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:8001',
+    'https://project-ssjf.netlify.app/'
+]
+
+
+INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
 
 # Application definition
 
@@ -59,9 +83,11 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'backend.urls'
