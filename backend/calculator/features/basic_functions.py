@@ -30,9 +30,9 @@ def compute_addition(payload):
     number_one, number_two = unpack_payload(payload)
     number_one = number_one.replace('.', '')
     number_two = number_two.replace('.', '')
-    result = mpf(number_one) + mpf(number_two)
-    print(result)
-    return "result"
+    result = Decimal(number_one) + Decimal(number_two)
+
+    return result
 
 
 def compute_subtraction(payload):

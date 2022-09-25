@@ -40,7 +40,7 @@ def calulator_funtions(request):
             result = compute_exponent(request_payload)
 
         elif compute_function == 'factorial':
-            result = compute_factorial(request_payload)
+            result = compute_factorial(request_payload) 
 
         elif compute_function == 'step2' or compute_function == 'modlimits':
             result = compute_step_two(request)
