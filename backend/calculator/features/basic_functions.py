@@ -2,10 +2,12 @@ from decimal import Decimal
 from decimal import getcontext
 import numpy as np
 import sys
-
+import mpmath as mpf
 from .utils.file_upload import handle_fileupload, initialise_file_content
 
 sys.float_info.max
+getcontext().prec = 100
+getcontext().Emax = 1000000000
 
 '''
 Payload Doc
@@ -28,10 +30,9 @@ def compute_addition(payload):
     number_one, number_two = unpack_payload(payload)
     number_one = number_one.replace('.', '')
     number_two = number_two.replace('.', '')
-    result = Decimal(number_one) + Decimal(number_two)
-    getcontext().prec = 100000000
-    print(number_one)
-    return result
+    result = mpf(number_one) + mpf(number_two)
+    print(result)
+    return "result"
 
 
 def compute_subtraction(payload):
