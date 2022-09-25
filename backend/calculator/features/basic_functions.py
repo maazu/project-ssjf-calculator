@@ -2,6 +2,9 @@ from decimal import Decimal
 from decimal import getcontext
 import numpy as np
 import sys
+
+from .utils.file_upload import handle_fileupload, initialise_file_content
+
 sys.float_info.max
 
 '''
@@ -14,14 +17,20 @@ number_two : numberTwo
 
 
 def unpack_payload(payload):
-    number_one = payload['testNumber']
-    number_two = payload['numberTwo']
+    number_one_path = handle_fileupload(payload, file_name='testNumberFile')
+    number_two_path = handle_fileupload(payload, file_name='numberTwoFile')
+    number_one = initialise_file_content(number_one_path)
+    number_two = initialise_file_content(number_two_path)
     return number_one, number_two
 
 
 def compute_addition(payload):
     number_one, number_two = unpack_payload(payload)
-    result = number_one + number_two
+    number_one = number_one.replace('.', '')
+    number_two = number_two.replace('.', '')
+    result = Decimal(number_one) + Decimal(number_two)
+    getcontext().prec = 100000000
+    print(number_one)
     return result
 
 
@@ -46,7 +55,7 @@ def compute_division(payload):
 def compute_squareroot(payload):
     number_one, number_two = unpack_payload(payload)
     number = Decimal(number_two)
-    getcontext().prec = 10000
+    getcontext().prec = 100000000
     result = number.sqrt()
     return result
 
