@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 
-from .features.basic_functions import compute_addition, compute_exponent, compute_mutliplication, compute_squareroot, compute_squareroot_cap, compute_subtraction, compute_division, compute_factorial
+from .features.basic_functions import compute_addition, compute_exponent, compute_mutliplication, compute_squareroot, compute_subtraction, compute_division, compute_factorial
 from .features.step_two import compute_step_two
 from .features.step_three import compute_step_three
 from .features.step_four import compute_step_four
@@ -30,9 +30,6 @@ def calulator_funtions(request):
         elif compute_function == 'divide' or compute_function == 'division':
             result = compute_division(request_payload)
 
-        elif compute_function == 'squarerootcap':
-            result = compute_squareroot_cap(request_payload)
-
         elif compute_function == 'squareroot':
             result = compute_squareroot(request_payload)
 
@@ -46,7 +43,7 @@ def calulator_funtions(request):
             result = compute_step_two(request_payload)
 
         elif compute_function == 'step3':
-            result = compute_step_three(request)
+            return compute_step_three(request_payload)
 
         elif compute_function == 'step4':
             result = compute_step_four(request_payload)

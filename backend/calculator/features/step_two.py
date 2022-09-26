@@ -17,6 +17,7 @@ def compute_mod_limits(test_number, mod_limits_list):
     mod_result = ''
     while not mod_found and counter < len(mod_limits_list):
         mod_by = Decimal(mod_limits_list[counter])
+
         mod = float(mod_by % test_number)
         mod_result = [number for number in mod_limits_list if Decimal(
             number.strip()) == mod]
