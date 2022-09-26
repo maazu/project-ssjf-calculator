@@ -46,7 +46,7 @@ def calulator_funtions(request):
             return compute_step_three(request_payload)
 
         elif compute_function == 'step4':
-            result = compute_step_four(request_payload)
+            return compute_step_four(request_payload)
 
         elif compute_function == 'step5':
             result = 'In progress'
