@@ -25,7 +25,7 @@ def initialise_file_content(file_path):
     file = os.open(file_path, os.O_RDWR)
 
     # Reading text
-    file_content = os.read(file, 1024)
+    file_content = os.read(file, 100000000000)
     file_content = file_content.decode()
 
     os.close(file)

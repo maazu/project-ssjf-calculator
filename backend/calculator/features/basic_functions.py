@@ -56,7 +56,7 @@ def compute_division(payload):
 def compute_squareroot(payload):
     number_one, number_two = unpack_payload(payload)
     number = Decimal(number_two)
-    getcontext().prec = 100000000
+    getcontext().prec = 1000
     result = Decimal(number_one).sqrt()
     return result
 

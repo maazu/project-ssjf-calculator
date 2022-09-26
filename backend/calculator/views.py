@@ -27,7 +27,7 @@ def calulator_funtions(request):
         elif compute_function == 'multiply':
             result = compute_mutliplication(request_payload)
 
-        elif compute_function == 'divide':
+        elif compute_function == 'divide' or compute_function == 'division':
             result = compute_division(request_payload)
 
         elif compute_function == 'squarerootcap':
@@ -43,7 +43,7 @@ def calulator_funtions(request):
             result = compute_factorial(request_payload)
 
         elif compute_function == 'step2' or compute_function == 'modlimits':
-            result = compute_step_two(request)
+            result = compute_step_two(request_payload)
 
         elif compute_function == 'step3':
             result = compute_step_three(request)
