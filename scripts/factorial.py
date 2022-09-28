@@ -13,7 +13,7 @@ DEFAULT_RESULT_SAVE_PATH = '../results/' + CAL_OPERATION + \
     '/' + current_timestamp() + '-' + CAL_OPERATION + '.txt'
 
 
-@nb.njit(fastmath=True, parallel=True)
+@nb.njit(fastmath=True)
 def perform_operation(n):
     factorial = 1
 
