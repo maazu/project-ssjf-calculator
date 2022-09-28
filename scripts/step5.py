@@ -10,7 +10,7 @@ getcontext().prec = 999999999999999999
 getcontext().Emax = 999999999999999999
 
 
-CAL_OPERATION = 'step4'
+CAL_OPERATION = 'step5'
 DEFAULT_RESULT_SAVE_PATH = '../results/' + CAL_OPERATION + \
     '/' + current_timestamp() + '-' + CAL_OPERATION + '.txt'
 
@@ -49,6 +49,6 @@ if __name__ == "__main__":
         testnumber = read_file_content(testnumber)
 
     # compute
-    print('Running Step 4 Script')
+    print('Running Step 5 Script')
     compute_step_four(testnumber, save_file=save_file,
                       display_output=display_output)
