@@ -1,7 +1,8 @@
 *.DS_Store
 *.venv/
 *.pem
-100-billion-character.txt
+1-bill-char.txt
+1-bill-char-decimal.txt
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
