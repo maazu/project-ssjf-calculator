@@ -1,5 +1,6 @@
 import argparse
 from decimal import Decimal
+from genericpath import exists
 from utils.read_file import read_file_content, save_data_file, current_timestamp, str2bool
 import sys
 from decimal import *
@@ -12,28 +13,31 @@ DEFAULT_RESULT_SAVE_PATH = '../results/' + CAL_OPERATION + \
     '/' + current_timestamp() + '-' + CAL_OPERATION + '.txt'
 
 
+def format_modlimt(numbers):
+    if len(numbers) > 1:
+        res = [int(number) for number in numbers.split(',')]
+        return res
+    else:
+        return numbers
+
+
+def check_availability_in_list(element, collection: iter):
+    return element in collection
+
+
 def perform_operation(test_number, mod_limits_list):
     mod_found = False
-    counter = 0
-    mod_result = ''
-    while not mod_found and counter < len(mod_limits_list):
-        mod_by = Decimal(mod_limits_list[counter])
-
-        mod = mod_by % test_number
-
-        mod_result = [number for number in mod_limits_list if Decimal(
-            number.strip()) == mod]
-
-        if len(mod_result) > 0:
-            mod_found = True
-            return mod_result[0]
-
-        counter = counter + 1
+    number = 1
+    while not mod_found:
+        mod = Decimal(test_number) % number
+        if check_availability_in_list(mod, mod_limits_list):
+            return number
+        number = number + 1
 
 
 def compute_step_two(test_number, modlimit, save_file, display_output, path=DEFAULT_RESULT_SAVE_PATH):
 
-    mod_limits_list = modlimit.split(',')
+    mod_limits_list = format_modlimt(modlimit)
     test_number = Decimal(test_number)
     result = perform_operation(test_number, mod_limits_list)
 
@@ -41,7 +45,7 @@ def compute_step_two(test_number, modlimit, save_file, display_output, path=DEFA
         save_data_file(data_content=str(result), path=path)
 
     if display_output:
-        print("Modlimit Fount =>", str(result))
+        print("Modlimit Found =>", str(result))
 
     return result
 
@@ -71,7 +75,10 @@ if __name__ == "__main__":
     display_output = args.displayoutput
     save_file = args.savefile
 
-    if testnumber and testnumber.endswith('.txt'):
+    if testnumber.endswith('.txt'):
+        testnumber = read_file_content(testnumber)
+
+    if modlimit.endswith('.txt'):
         testnumber = read_file_content(testnumber)
 
     # compute
