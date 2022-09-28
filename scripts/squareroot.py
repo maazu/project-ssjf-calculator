@@ -31,7 +31,7 @@ def squareroot(number_one, save_file, show_output, path=DEFAULT_RESULT_SAVE_PATH
 
 
 if __name__ == "__main__":
-    print('Running Add Script')
+    print('Running SquareRoot Script')
 
     parser = argparse.ArgumentParser(
         description='Execute Step 3 of the program.')

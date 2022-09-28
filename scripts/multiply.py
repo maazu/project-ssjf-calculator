@@ -29,7 +29,7 @@ def multiply(number_one, number_two, save_file, show_output, path=DEFAULT_RESULT
 
 
 if __name__ == "__main__":
-    print('Running Add Script')
+    print('Running Multiplication Script')
 
     parser = argparse.ArgumentParser(
         description='Execute Step 3 of the program.')
