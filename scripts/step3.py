@@ -53,14 +53,14 @@ if __name__ == "__main__":
                         const=True, default=False,
                         help="print the result.")
 
-    parser.add_argument("--displayoutput", type=str2bool, nargs='?',
+    parser.add_argument("--showoutput", type=str2bool, nargs='?',
                         const=True, default=False,
                         help="print the result.")
 
     args = parser.parse_args()
 
     testnumber = args.testnumber
-    display_output = args.displayoutput
+    display_output = args.showoutput
     save_file = args.savefile
 
     if testnumber.endswith('.txt'):

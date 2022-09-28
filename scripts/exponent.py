@@ -44,7 +44,7 @@ if __name__ == "__main__":
                         const=True, default=False,
                         help="save the result in file .")
 
-    parser.add_argument("--displayoutput", type=str2bool, nargs='?',
+    parser.add_argument("--showoutput", type=str2bool, nargs='?',
                         const=True, default=False,
                         help="print the result.")
 
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     number_two = args.numbertwo
     save_file = args.savefile
 
-    show_output = args.displayoutput
+    show_output = args.showoutput
 
     if number_one.endswith('.txt'):
         number_one = read_file_content(number_one)
