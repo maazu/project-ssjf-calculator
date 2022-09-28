@@ -40,7 +40,7 @@ testnumber mod 3 = 1
 
 --testnumber can be any number or location of the the file if the number is too big and needs to be read from a file (only applicable in step2,step3,step4,step5)
 
---displayout will print the result of the computing operation on a screen.
+--showoutput will print the result of the computing operation on a screen.
 
 --savefile will save the result of the computed operation in a txt file. This file is saved in results directory and computed result can be found under the calutated
 operation name directory.
@@ -48,3 +48,16 @@ operation name directory.
 ```
 python3 step2.py --testnumber 937  --modlimit ../data/modlimits/modlimitTest.txt --displayoutput False --savefile False
 ```
+
+## Computing Squarerootcap & BNDC or Step 3
+
+In this we calculate the squarerootcap and the base number difference using the testnumber given by the user.
+
+### Base number difference cap or BNDC
+It is calculated by taking the square root of supplied TN (test number) and rounded down to the nearest whole number.
+
+### Square root cap or SRC
+It is calculated this by adding 1 in the given TN (test number) and dividing it by 2. So for our example if the supplied TN is 937 
+we calcuate in the following way (937+1)/2=469.
+
+
