@@ -42,11 +42,12 @@ testnumber mod 3 = 1
 
 --showoutput will print the result of the computing operation on a screen.
 
+
 --savefile will save the result of the computed operation in a txt file. This file is saved in results directory and computed result can be found under the calutated
 operation name directory.
 
 ```
-python3 step2.py --testnumber 937  --modlimit ../data/modlimits/modlimitTest.txt --displayoutput False --savefile False
+python3 step2.py --testnumber 937  --modlimit ../data/modlimits/modlimitTest.txt --showoutput False --savefile False
 ```
 
 ## Computing Squarerootcap & BNDC or Step 3
@@ -59,5 +60,6 @@ It is calculated by taking the square root of supplied TN (test number) and roun
 ### Square root cap or SRC
 It is calculated this by adding 1 in the given TN (test number) and dividing it by 2. So for our example if the supplied TN is 937 
 we calcuate in the following way (937+1)/2=469.
+
 
 
