@@ -1,29 +1,30 @@
-import math
-from decimal import Decimal
+from decimal import Decimal, getcontext
 from utils.read_file import read_file_content, save_data_file, current_timestamp, str2bool
 import argparse
 import numba as nb
+
 import sys
-import sys
-import numpy as np
-max = sys.maxsize
 sys.float_info.max
+getcontext().prec = 999999999999999999
+getcontext().Emax = 999999999999999999
+
+
 CAL_OPERATION = 'factorial'
 DEFAULT_RESULT_SAVE_PATH = '../results/' + CAL_OPERATION + \
     '/' + current_timestamp() + '-' + CAL_OPERATION + '.txt'
 
 
-@nb.njit(fastmath=True)
 def perform_operation(n):
     factorial = 1
 
-    for i in nb.prange(1, int(n)+1):
-        factorial = factorial * i
+    for i in range(1, int(Decimal(n) + 1)):
+        factorial = int(factorial) * i
+
     return factorial
 
 
 def compute_factorial(number_one, save_file, show_output, path=DEFAULT_RESULT_SAVE_PATH,):
-    result = perform_operation(int(number_one))
+    result = perform_operation(number_one)
     if save_file:
         save_data_file(data_content=str(result), path=path)
 
