@@ -39,8 +39,11 @@ testnumber mod 3 = 1
 ## Step 2 Execution
 
 --testnumber can be any number or location of the the file if the number is too big and needs to be read from a file (only applicable in step2,step3,step4,step5)
+
 --displayout will print the result of the computing operation on a screen.
---savefile will save the result of the computed operation in a txt file. This file is saved in results directory and computed result can be found under the calutated operation name directory.
+
+--savefile will save the result of the computed operation in a txt file. This file is saved in results directory and computed result can be found under the calutated
+operation name directory.
 
 ```
 python3 step2.py --testnumber 937  --modlimit ../data/modlimits/modlimitTest.txt --displayoutput False --savefile False
