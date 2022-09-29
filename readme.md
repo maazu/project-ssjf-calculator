@@ -23,47 +23,47 @@ To execute this programme you will need python 3.9 or greater
 ### Add
 
 ```
- python3 add.py --numberone 11 --numbertwo ../data/hundred-long/624-char.txt --showoutput True --savefile True
+ python add.py --numberone 11 --numbertwo ../data/hundred-long/624-char.txt --showoutput True --savefile True
 ```
 
 ### Subtract
 
 ```
- python3 subtract.py --numberone 11 --numbertwo ../data/hundred-long/624-char.txt  --showoutput True --savefile True
+ python subtract.py --numberone 11 --numbertwo ../data/hundred-long/624-char.txt  --showoutput True --savefile True
 ```
 
 ### Division
 
 ```
- python3 divide.py --numberone 11 --numbertwo ../data/hundred-long/624-char.txt  --showoutput True --savefile True
+ python divide.py --numberone 11 --numbertwo ../data/hundred-long/624-char.txt  --showoutput True --savefile True
 ```
 
 ### exponent
 
 ```
- python3 exponent.py --numberone 11 --showoutput True --savefile True
+ python exponent.py --numberone 11 --showoutput True --savefile True
 ```
 
 ### squareroot
 
 ```
- python3 exponent.py --numberone 11 --showoutput True --savefile True
+ python exponent.py --numberone 11 --showoutput True --savefile True
 ```
 
 ## Checking the Steps 2
 
 ```
-python3 step2.py --testnumber 937  --modlimit ../data/modlimits/modlimitTest.txt --showoutput False --savefile False
+python step2.py --testnumber 937  --modlimit ../data/modlimits/modlimitTest.txt --showoutput False --savefile False
 ```
 
 ## Checking the Steps 3
 
 ```
-python3 step2.py --testnumber 937 --showoutput False --savefile False
+python step3.py --testnumber 937 --showoutput False --savefile False
 ```
 
 ## Checking the Steps 4
 
 ```
-python3 step4.py --testnumber ../data/hundred-long/624-char.txt --modnumber 36 --showoutput True
+python step4.py --testnumber ../data/hundred-long/624-char.txt --modnumber 36 --showoutput True
 ```
