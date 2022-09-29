@@ -1,5 +1,5 @@
 import argparse
-from .utils.read_file import read_file_content, save_data_file, current_timestamp, str2bool
+from utils.read_file import read_file_content, save_data_file, current_timestamp, str2bool
 import sys
 from decimal import *
 sys.float_info.max
