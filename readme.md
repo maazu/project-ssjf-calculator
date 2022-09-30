@@ -47,7 +47,7 @@ To execute this programme you will need python 3.9 or greater
 ### squareroot
 
 ```
- python exponent.py --numberone 11 --showoutput True --savefile True
+ python squaroot.py --numberone 11 --showoutput True --savefile True
 ```
 
 ## Checking the Steps 2
