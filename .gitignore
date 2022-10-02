@@ -1,5 +1,6 @@
 *.DS_Store
 *.venv/
+data/billion-long/*.txt
 *.pem
 1-bill-char.txt
 1-bill-char-decimal.txt

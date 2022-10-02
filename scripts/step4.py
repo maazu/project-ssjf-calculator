@@ -37,16 +37,17 @@ def compute_step_four(testnumber, mod_number, save_file, display_output, path=DE
         for same_number in unique_mods:
 
             subtracted_number = same_number - number
+            if subtracted_number >= 0:
+                print(same_number, '-', number, '=', subtracted_number)
+                subtracted_mods.append(subtracted_number)
             if subtracted_number < 0:
-                subtracted_number = subtracted_number % mod_number
+                new_remoded_number = subtracted_number % mod_number
+                print(same_number, '-', number, '=',
+                      subtracted_number, 'Result is less than zero', '{} will be remoded again by {} ==>'.format(subtracted_number, mod_number), new_remoded_number)
+                subtracted_mods.append(new_remoded_number)
 
-            if subtracted_number == testnumber % mod_number:
-                found_pair.append(same_number)
-                found_pair.append(number)
+    print('Found Subtracted Mods \n', subtracted_mods)
 
-    if display_output:
-        print(found_pair)
-    
     for number in range(0, mod_number+1):
         s = found_pair
 
