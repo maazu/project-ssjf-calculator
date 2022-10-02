@@ -32,7 +32,7 @@ def generate_digits(number_type, pattern):
     else:
         print('Warning Pattern was not given for {} same number is being used'.format(
             number_type))
-        return pattern
+        return str(pattern)
 
 
 def generate_number(start_pattern, middle_pattern, ending_pattern, save_file, show_output, path=DEFAULT_RESULT_SAVE_PATH):
