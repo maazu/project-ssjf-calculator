@@ -44,30 +44,30 @@ def compute_step_four(testnumber, mod_number, save_file, display_output, path=DE
         modding_dict[number] = mod_result
 
     unique_mods = list(set(mod_results))
-    print(unique_mods)
+    print("Unique Mods ", unique_mods)
     found_pair = []
-    subtracted_mods = []
+
     for number in unique_mods:
         for same_number in unique_mods:
 
             subtracted_number = same_number - number
             if subtracted_number >= 0:
-                print(same_number, '-', number, '=', subtracted_number)
-                subtracted_mods.append(subtracted_number)
+                # print(same_number, '-', number, '=', subtracted_number)
+                subtracted_number = subtracted_number
 
             if subtracted_number < 0:
                 new_remoded_number = subtracted_number % mod_number
-                print(same_number, '-', number, '=',
-                      subtracted_number, 'Result is less than zero', '{} will be remoded again by {} ==>'.format(subtracted_number, mod_number), new_remoded_number)
-                subtracted_mods.append(new_remoded_number)
+                # print(same_number, '-', number, '=',
+                #       subtracted_number, 'Result is less than zero', '{} will be remoded again by {} ==>'.format(subtracted_number, mod_number), new_remoded_number)
                 subtracted_number = new_remoded_number
 
             if subtracted_number == final_check_number:
-                print("====> This pair should be selected", same_number, number)
+                print("This pair should be selected",
+                      same_number, number, final_check_number)
                 found_pair.append(same_number)
                 found_pair.append(number)
 
-    # print(modding_dict)
+    print("Number where subtracted result found equal", found_pair)
 
     final_found_pairs = {}
 
