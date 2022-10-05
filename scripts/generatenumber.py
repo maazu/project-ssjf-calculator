@@ -4,8 +4,9 @@ from decimal import Decimal, getcontext
 import argparse
 import sys
 from decimal import *
-from numba import numba as nb
+import time
 sys.float_info.max
+
 getcontext().prec = 999999999999999999
 getcontext().Emax = 999999999999999999
 
@@ -18,8 +19,6 @@ DEFAULT_RESULT_SAVE_PATH = '../results/' + CAL_OPERATION + \
 def generate_digits(number_type, pattern):
     join_str = ''
     if ',' in pattern:
-        print('Pattern was given for {} same number is being used'.format(number_type))
-        print('Generating number')
         pattern = pattern.split(',')
         for index in range(len(pattern)-1):
             genernation_number = pattern[index]
@@ -30,12 +29,12 @@ def generate_digits(number_type, pattern):
 
         return join_str
     else:
-        print('Warning Pattern was not given for {} same number is being used'.format(
-            number_type))
+
         return str(pattern)
 
 
 def generate_number(start_pattern, middle_pattern, ending_pattern, save_file, show_output, path=DEFAULT_RESULT_SAVE_PATH):
+    start_time = time.time()
     start_pattern = generate_digits('start', start_pattern)
     middle_pattern = generate_digits('middle', middle_pattern)
     ending_pattern = generate_digits('ending', ending_pattern)
@@ -46,6 +45,7 @@ def generate_number(start_pattern, middle_pattern, ending_pattern, save_file, sh
 
     if show_output:
         print(result)
+    print(time.time() - start_time, "seconds")
 
 
 if __name__ == "__main__":
