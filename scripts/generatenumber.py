@@ -45,7 +45,7 @@ def generate_number(start_pattern, middle_pattern, ending_pattern, save_file, sh
 
     if show_output:
         print(result)
-    print(time.time() - start_time, "seconds")
+    print(time.time() - start_time, "seconds took to complete the script")
 
 
 if __name__ == "__main__":
