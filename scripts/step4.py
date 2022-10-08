@@ -110,24 +110,21 @@ def compute_step_four(testnumber, mod_number, save_file, display_output, path=DE
                 found_pair.append(str(number) + "-" + str(same_number))
 
     print("Number where subtracted result found equal", found_pair)
-
-    final_found_pairs = {}
-
+    final_smallest_mod = 'not found'
+    # Excel sheet process FINDING MODS AA
     for pair in found_pair:
         pair_split = pair.split('-')
         p1 = pair_split[0]
         p2 = pair_split[1]
         pair_val_1 = find_mod_equal_value(modding_dict, int(p1))
         pair_val_2 = find_mod_equal_value(modding_dict, int(p2))
-        print(p1, pair_val_1, p2, pair_val_2)
-
-        final_smallest_mod = 'not found'
+        print(p1, pair_val_1, "--", p2, pair_val_2)
 
         for number_one in pair_val_1:
             all_results = np.array([], dtype='int64')
             for number_two in pair_val_2:
                 subtract_out = number_two - number_one
-                print(number_two, number_one, subtract_out)
+                #print(number_two, number_one, subtract_out)
                 if subtract_out > 1:
                     all_results = np.append(all_results, subtract_out)
 
@@ -140,10 +137,10 @@ def compute_step_four(testnumber, mod_number, save_file, display_output, path=DE
                     if final_smallest_mod > smallest_value:
                         final_smallest_mod = smallest_value
 
-                print("Smallest Mod found in ", pair_val_2,
-                      found_smallest_mod[0])
+            # print("Smallest Mod found in ", pair_val_2,
+            #       found_smallest_mod[0])
 
-        print("Final smallest Mod found", final_smallest_mod)
+    print("Final smallest Mod found", final_smallest_mod)
 
     print('Now we find the closest values in the gnerated pairs')
 
