@@ -144,12 +144,6 @@ def compute_step_four(testnumber, mod_number, save_file, display_output, path=DE
 
     print("New chosen smallest Mod found", s[0])
 
-    print('Now we find the closest values in the gnerated pairs')
-
-
-# 6 - 1 = 5
-# 17 - 12 = 5
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
