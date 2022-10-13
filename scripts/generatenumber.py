@@ -45,12 +45,13 @@ def generate_number(start_pattern, middle_pattern, ending_pattern, save_file, sh
 
     if show_output:
         print(result)
-    print(time.time() - start_time, "seconds took to complete the script")
+
+    print(time.time() - start_time, " seconds took to complete the script")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description='Generate numbers ')
+        description='Generate numbers')
 
     parser.add_argument('--start', type=str,
                         help='Enter start number or start number file path')

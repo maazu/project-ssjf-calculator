@@ -1,5 +1,4 @@
 
-from step3 import compute_squareroot_cap
 from utils.read_file import read_file_content, save_data_file, current_timestamp, str2bool
 from decimal import Decimal, getcontext
 import argparse
@@ -12,9 +11,6 @@ import random
 import timeit
 import numpy as np
 import pandas as pd
-sys.float_info.max
-getcontext().prec = 999999999999999999
-getcontext().Emax = 999999999999999999
 
 
 CAL_OPERATION = 'step4'
@@ -26,40 +22,55 @@ def find_mod_equal_value(dict, query_value):
     return [key for key, value in dict.items() if value == query_value]
 
 
-@jit
-def merge(l1, l2):
-    combined = []
-    c1 = 0
-    c2 = 0
-    n1 = l1[c1]
-    n2 = l2[c2]
-    len1 = len(l1)
-    len2 = len(l2)
-    while (c1 < len1 and c2 < len2):
-        if n1 < n2:
-            combined.append(n1)
-            c1 += 1
-            if (c1 < len1):
-                n1 = l1[c1]
-        else:
-            combined.append(n2)
-            c2 += 1
-            if (c2 < len2):
-                n2 = l2[c2]
-    combined.extend(l1[c1:])
-    combined.extend(l2[c2:])
-    return combined
+def compute_squareroot_cap(testnumber):
+    testnumber = testnumber
+    result = testnumber + 1
+    result = result / 2
+    return result
 
 
-@jit
-def mergesort(a):
-    n = len(a)
-    if n == 0:
-        return a
-    if n == 1:
-        return a
-    if n > 1:
-        return merge(mergesort(a[:int(n/2)]), mergesort(a[int(n/2):]))
+def compute_bndc(testnumber):
+    s = np.sqrt([testnumber])
+    result = round(s[0])
+
+    return result
+
+
+def find_sssssss(testnumber, found_pair, smallest_mod, modding_dict, mod_number):
+    unique_mods = []
+    for pair in found_pair:
+        pair_split = pair.split('-')
+        p1 = pair_split[0]
+        p2 = pair_split[1]
+
+        pair_val_1 = find_mod_equal_value(modding_dict, int(p1))
+        pair_val_2 = find_mod_equal_value(modding_dict, int(p2))
+        pair_val_1 = [number + mod_number for number in pair_val_1]
+        pair_val_2 = [number + mod_number for number in pair_val_2]
+
+        print(pair, pair_val_1, pair_val_2)
+
+        for number_1, number_2 in zip(pair_val_1, pair_val_2):
+            square_1 = number_1 * number_1
+            resu1 = square_1 % smallest_mod
+            square_2 = number_2 * number_2
+            resu2 = square_2 % smallest_mod
+            print(number_1, square_1, resu1, smallest_mod)
+            print(number_2, square_2, resu2, smallest_mod)
+            if resu1 >= 0:
+                unique_mods.append(resu1)
+            if resu2 >= 0:
+                unique_mods.append(resu2)
+    return list(set(unique_mods))
+
+
+def subtraction_process(unique_mods, smallest_mod):
+
+    for number_one in unique_mods:
+        for number_two in unique_mods:
+            result = number_two-number_one
+            print(number_two, '-', number_one, '\t',
+                  result, '\t', result % smallest_mod)
 
 
 def compute_step_four(testnumber, mod_number, save_file, display_output, path=DEFAULT_RESULT_SAVE_PATH):
@@ -70,6 +81,7 @@ def compute_step_four(testnumber, mod_number, save_file, display_output, path=DE
     final_check_number = testnumber % mod_number
     modding_dict = {}
     src = compute_squareroot_cap(testnumber)
+    bndc = compute_bndc(testnumber)
     for number in range(0, mod_number+1):
         if number > src:
             break
@@ -113,6 +125,7 @@ def compute_step_four(testnumber, mod_number, save_file, display_output, path=DE
 
     all_smallest_mod_values = np.array([], dtype='int64')
     # Excel sheet process FINDING MODS AA
+    bndc_limit_exceded = False
     for pair in found_pair:
         pair_split = pair.split('-')
         p1 = pair_split[0]
@@ -133,16 +146,33 @@ def compute_step_four(testnumber, mod_number, save_file, display_output, path=DE
             if len(all_results) > 0:
                 found_smallest_mod = np.sort(all_results)
                 smallest_value = found_smallest_mod[0]
-                if smallest_value not in all_smallest_mod_values:
-                    all_smallest_mod_values = np.append(
-                        all_smallest_mod_values, smallest_value)
+
+                if smallest_value < bndc:
+                    if smallest_value not in all_smallest_mod_values:
+                        all_smallest_mod_values = np.append(
+                            all_smallest_mod_values, smallest_value)
 
         print("Smallest Mod found in ", pair,
               smallest_value)
-    s = np.sort(all_smallest_mod_values)
-    print('Smallest Mods Found ', s)
+    smallest_mods_list = np.sort(all_smallest_mod_values)
+    print('Smallest Mods Found ', smallest_mods_list)
 
-    print("New chosen smallest Mod found", s[0])
+    print("New chosen smallest Mod found", smallest_mods_list[0])
+
+    another_unique_mods = {}
+
+    for smallest_mod in smallest_mods_list:
+        data = find_sssssss(testnumber, found_pair,
+                            smallest_mod, modding_dict, mod_number)
+        if (len(data) > 1):
+            print(
+                '\n====Performing subtraction using the unique values retrived with new mod ', smallest_mod, "======")
+            print(data, "\n")
+            subtraction_process(data, smallest_mod)
+            break
+        else:
+            print(
+                '\n\n ====Using the next smallest mode', smallest_mod, "====== \n\n")
 
 
 if __name__ == "__main__":
