@@ -1,16 +1,9 @@
 
 from utils.read_file import read_file_content, save_data_file, current_timestamp, str2bool
 from decimal import Decimal, getcontext
-import argparse
-import sys
 from decimal import *
-import collections
+import argparse
 import numpy as np
-from numba import jit
-import random
-import timeit
-import numpy as np
-import pandas as pd
 
 
 CAL_OPERATION = 'step4'
@@ -64,13 +57,18 @@ def find_sssssss(testnumber, found_pair, smallest_mod, modding_dict, mod_number)
     return list(set(unique_mods))
 
 
-def subtraction_process(unique_mods, smallest_mod):
-
+def subtraction_process(unique_mods, smallest_mod, testnumber):
+    pairs = []
     for number_one in unique_mods:
         for number_two in unique_mods:
-            result = number_two-number_one
-            print(number_two, '-', number_one, '\t',
-                  result, '\t', result % smallest_mod)
+            result = number_two - number_one
+            pair_mod = result % smallest_mod
+            ch = int(testnumber % smallest_mod)
+            if ch == pair_mod:
+                print(number_two, '-', number_one, '\t',
+                      result, '\t', ch)
+                ss = str(number_two) + '-' + str(number_two)
+                pairs.append(ss)
 
 
 def compute_step_four(testnumber, mod_number, save_file, display_output, path=DEFAULT_RESULT_SAVE_PATH):
@@ -168,8 +166,20 @@ def compute_step_four(testnumber, mod_number, save_file, display_output, path=DE
             print(
                 '\n====Performing subtraction using the unique values retrived with new mod ', smallest_mod, "======")
             print(data, "\n")
-            subtraction_process(data, smallest_mod)
-            break
+            s = subtraction_process(data, smallest_mod, testnumber)
+            for pair in found_pair:
+                pair_split = pair.split('-')
+                p1 = pair_split[0]
+                p2 = pair_split[1]
+                pair_val_1 = find_mod_equal_value(modding_dict, int(p1))
+                pair_val_2 = find_mod_equal_value(modding_dict, int(p2))
+                pair_valone = [v+mod_number for v in pair_val_1]
+                pair_valtwo = [v+mod_number for v in pair_val_2]
+
+                print(pair_valtwo, pair_valone)
+                for i1, i2 in zip(pair_valone, pair_valtwo):
+                    print(i1, i2)
+                break
         else:
             print(
                 '\n\n ====Using the next smallest mode', smallest_mod, "====== \n\n")
