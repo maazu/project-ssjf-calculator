@@ -1,16 +1,11 @@
 
-import math
-from itertools import chain, combinations
-from utils.read_file import read_file_content, save_data_file, current_timestamp, str2bool
 from decimal import *
-import collections
-mylist = [0, 1, 2, 3, 4]
-# make a deque from your list
-
+import sys
+sys.float_info.max
 
 testnumber = 12345
 mod_number = 36
-square_root_cap = int((testnumber + 1) / 2)
+square_root_cap = (testnumber + 1) // 2
 given_mod_limits = []
 unique_mods = [i*i % mod_number for i in range(1, mod_number)]
 unique_mods = list(set(unique_mods))
@@ -68,7 +63,7 @@ print(smallest_mods)
 
 
 def find_mod_in_chain(chain):
-    teemss = []
+    temp_list = []
     temp_mod_number = smallest_mods[0]
     for number in chain:
         while True:
@@ -77,10 +72,10 @@ def find_mod_in_chain(chain):
                 number = number + mod_number
                 chain_index_mod = square % temp_mod_number
                 if chain_index_mod == testnumber % temp_mod_number:
-                    print(chain_index_mod)
+                    temp_list.append(chain_index_mod)
             elif square > square_root_cap:
                 break
-    return teemss
+    return temp_list
 
 
 def smallest_mod_find():
@@ -91,14 +86,23 @@ def smallest_mod_find():
         chain_two = generate_chain(pairing[1])
         chain_one = find_mod_in_chain(chain_one)
         chain_two = find_mod_in_chain(chain_two)
-        print(chain_one, chain_two)
-        # if len(chain_one) < 0 and len(chain_two) < 0:
-        #     chains.append(chain_one)
-        #     chains.append(chain_two)
 
-        #     print("smallest_mods", smallest_mods[0])
-    # return chains
+        if len(chain_one) > 0 and len(chain_two) > 0:
+            print(chain_one, chain_two)
+            chains.append(chain_one)
+            chains.append(chain_two)
+
+            print("smallest_mods", smallest_mods[0])
+            return True
+
+    if len(chains) == 0:
+        smallest_mods.pop(0)
+        return False
 
 
 print('================================')
-print(smallest_mod_find())
+
+while True:
+    found = smallest_mod_find()
+    if found:
+        break
