@@ -1,8 +1,10 @@
-
-from decimal import *
+from decimal import Decimal, getcontext
 from test import TESTNUMBER, MOD_LIMITS_LIST, MOD_NUMER
 import sys
 sys.float_info.max
+getcontext().prec = 999999999999999999
+getcontext().Emax = 999999999999999999
+
 
 testnumber = TESTNUMBER
 mod_number = MOD_NUMER
@@ -141,5 +143,6 @@ while len(smallest_mods) > 0:
                     re = s-value
                     print(s, value, re, re % mod_number)
             print('Modable value calculated', mod_number)
+            print(data)
             break
     break
