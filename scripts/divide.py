@@ -12,7 +12,7 @@ DEFAULT_RESULT_SAVE_PATH = '../results/' + CAL_OPERATION + \
 
 
 def perform_operation(number_one, number_two):
-    result = Decimal(number_one) // Decimal(number_two)
+    result = Decimal(number_one) / Decimal(number_two)
     return result
 
 
